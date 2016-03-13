@@ -9,7 +9,7 @@ from flask import render_template, Blueprint, url_for, \
     redirect, flash, request
 
 from project.server import bcrypt, db
-from project.server.models import Cdi
+from project.server.models import Cdi, User
 
 import csv
 import datetime
@@ -47,3 +47,11 @@ def load():
         db.session.commit()
 
     return render_template('cdi/loaded.html', cdi=reader)
+
+
+@cdi_blueprint.route('/cdi/list', methods=['GET', 'POST'])
+def list():
+    list = Cdi.query.order_by(Cdi.data).all()
+    list.reverse()
+
+    return render_template('cdi/list.html', list=list)

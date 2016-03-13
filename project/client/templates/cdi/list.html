@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+  <header class="content-header">
+    <h1>Indicadores CDI</h1>
+  </header>
+
+  <br>
+
+  <div class="col-lg-3 col-sm-3">
+    <table border="1" class="table table-hover table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Taxa</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for cdi in list %}
+        <tr>
+          <td>{{ cdi.data.strftime('%d/%m/%Y') }}</td>
+          <td>{{ '{0:0.2f}'.format(cdi.taxa) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock content %}
