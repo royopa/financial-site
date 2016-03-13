@@ -25,9 +25,9 @@ cdi_blueprint = Blueprint('cdi', __name__,)
 #### routes ####
 ################
 
-@cdi_blueprint.route('/cdi/load', methods=['GET', 'POST'])
-def load():
-    ano = 2013
+@cdi_blueprint.route('/cdi/load/<year>', methods=['GET', 'POST'])
+def load(year=2016):
+    ano = year
     path = 'C:/c090762/projects/flask-skeleton/project/server/cdi/CDI_'+str(ano)+'.csv'
     csvfile = open(path, "r")
     reader = csv.reader(csvfile)
